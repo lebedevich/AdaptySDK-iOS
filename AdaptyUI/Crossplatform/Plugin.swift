@@ -87,7 +87,7 @@ package extension AdaptyUI {
                 throw AdaptyError(AdaptyUI.PluginError.viewNotFound(viewId))
             }
             
-            guard let rootVC = UIApplication.shared.windows.first?.rootViewController else {
+            guard let rootVC = UIApplication.shared.windows.last?.rootViewController else {
                 throw AdaptyError(AdaptyUI.PluginError.viewPresentationError(viewId))
             }
             
