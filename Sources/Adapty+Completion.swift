@@ -51,22 +51,6 @@ public extension Adapty {
     ///
     /// Call this method in the `application(_:didFinishLaunchingWithOptions:)`.
     ///
-    /// - Parameter builder: `AdaptyConfiguration.Builder` which allows to configure Adapty SDK
-    /// - Parameter completion: Result callback
-    nonisolated static func activate(
-        with builder: AdaptyConfiguration.Builder,
-        _ completion: AdaptyErrorCompletion? = nil
-    ) {
-        let configuration = builder.build()
-        withCompletion(completion) {
-            try await activate(with: configuration)
-        }
-    }
-
-    /// Use this method to initialize the Adapty SDK.
-    ///
-    /// Call this method in the `application(_:didFinishLaunchingWithOptions:)`.
-    ///
     /// - Parameter configuration: `AdaptyConfiguration` which allows to configure Adapty SDK
     /// - Parameter completion: Result callback
     nonisolated static func activate(
@@ -136,7 +120,7 @@ public extension Adapty {
     /// Read more on the [Adapty Documentation](https://docs.adapty.io/docs/attribution-integration)
     ///
     /// - Parameter attribution: a dictionary containing attribution (conversion) data.
-    /// - Parameter source: a source of attribution. The allowed values are: `.appsflyer`, `.adjust`, `.branch`, `.custom`.
+    /// - Parameter source: a source of attribution.
     /// - Parameter completion: A result containing an optional error.
     nonisolated static func updateAttribution(
         _ attribution: [AnyHashable: Any],
@@ -473,6 +457,24 @@ public extension Adapty {
     ) {
         withCompletion(completion) {
             try await logShowOnboarding(params)
+        }
+    }
+    
+    nonisolated static func updateCollectingRefundDataConsent(
+        _ consent: Bool,
+        _ completion: AdaptyErrorCompletion? = nil
+    ) {
+        withCompletion(completion) {
+            try await updateCollectingRefundDataConsent(consent)
+        }
+    }
+    
+    nonisolated static func updateRefundPreference(
+        _ refundPreference: AdaptyRefundPreference,
+        _ completion: AdaptyErrorCompletion? = nil
+    ) {
+        withCompletion(completion) {
+            try await updateRefundPreference(refundPreference)
         }
     }
 }
